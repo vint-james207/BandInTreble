@@ -1,8 +1,3 @@
-/////TO-DO: ADD CONTROLLERS FOLDER SOMEWHERE
-
-
-
-
 var gulp = require('gulp'); // npm install gulp
 var sass = require('gulp-sass'); // npm install gulp-sass
 var browserify = require('gulp-browserify') // npm install gulp-browserify
@@ -36,5 +31,5 @@ gulp.task('watch', function(){
   gulp.watch('./index.html', ['html']);
   gulp.watch('./main.js', ['js']);
   gulp.watch('./templates/*.html', ['html']);
-  // gulp.watch('./js/*/*.js', ['js']);
+  gulp.watch('./js/*/*.js', ['js']);
 });
