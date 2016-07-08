@@ -14,8 +14,14 @@ module.exports = function(app) {
             if ($scope.username != null){
               $location.path('/home');
             } else {
-              alert ('You must login');
+              alert ('Please enter a username');
             }
+        }
+        $scope.bandManagerSelect = function() {
+            console.log('clicked band manger options')
+        }
+        $scope.musicianSelect = function() {
+            console.log('clicked musical instruments')
         }
     });
 };
