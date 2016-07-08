@@ -1,8 +1,8 @@
 let app = angular.module('BandInTreble', ['ngRoute']);
 
 
-require('./controllers/home')(app);
-require('./controllers/availablecontroller')(app);
+require('./controllers/homecontroller')(app);
+// require('./controllers/availablecontroller')(app);
 require('./controllers/lookingforcontroller')(app);
 
 app.config(['$routeProvider', function($routeProvider) {
@@ -18,10 +18,10 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: 'HomeController',
             templateUrl: 'templates/home.html',
         })
-        .when('/available', {
-            controller: 'AvailableController',
-            templateUrl: 'templates/available.html',
-        })
+        // .when('/available', {
+        //     controller: 'AvailableController',
+        //     templateUrl: 'templates/available.html',
+        // })
         .when('/lookingfor', {
             controller: 'LookingForController',
             templateUrl: 'templates/lookingfor.html',
