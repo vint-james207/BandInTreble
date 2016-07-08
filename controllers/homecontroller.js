@@ -1,6 +1,7 @@
 module.exports = function(app) {
     app.controller('HomeController',['MusicFactory','$scope','$location',function(MusicFactory,$scope, $location) {
         $scope.loginClick = function() {
+          MusicFactory.postThis($scope.username)
             console.log('clicked')
             if ($scope.username != null){
               $location.path('/home');
@@ -8,10 +9,6 @@ module.exports = function(app) {
               alert ('Please enter a username');
             }
         }
-        $scope.PostThisThing = function(){
-          MusicFactory.postThis()
-        }
-
     $scope.bandManagerSelect = function() {
             console.log('clicked band manger options')
             // $location.path('/available');
