@@ -29,6 +29,7 @@ gulp.task('js', function(){
   gulp.src('./main.js')
     .pipe(browserify())
     .pipe(gulp.dest('./public'))
+
 });
 
 gulp.task('watch', function(){
@@ -36,5 +37,5 @@ gulp.task('watch', function(){
   gulp.watch('./index.html', ['html']);
   gulp.watch('./main.js', ['js']);
   gulp.watch('./templates/*.html', ['html']);
-  // gulp.watch('./js/*/*.js', ['js']);
+  gulp.watch('./js/*/*.js', ['js']);
 });
