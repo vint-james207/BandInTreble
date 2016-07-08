@@ -23,19 +23,24 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: 'LookingForController',
             templateUrl: 'templates/lookingfor.html',
         });
-  //
-  // THIS IS THE SERVICE BREH BRO
-  //
-  app.factory('MusicFactory', function($http){
-  var =
-      url:'/musician',
-      method: 'post',
-      data: {
-        name: "Logan"
-      }
-    }).then(function(results){
-      console.log()
-    })
+}]);
 
-  })
+//
+// THIS IS THE SERVICE BREH BRO
+//
+app.factory('MusicFactory', ['$http', '$location', function($http) {
+    return {
+      // todo: rename this to be more specific
+        postThis: function() {
+            $http({
+                url: '/musician',
+                method: 'post',
+                data: {
+                    name: 'Logan'
+                },
+            }).then(function(results) {
+                console.log("posted")
+            });
+        },
+    }; // end return
 }]);

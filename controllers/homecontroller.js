@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    app.controller('HomeController', function($scope, $location) {
+    app.controller('HomeController',['MusicFactory','$scope','$location',function(MusicFactory,$scope, $location) {
         $scope.loginClick = function() {
             console.log('clicked')
             if ($scope.username != null){
@@ -8,11 +8,14 @@ module.exports = function(app) {
               alert ('Please enter a username');
             }
         }
+        $scope.PostThisThing = function(){
+
+        }
         $scope.bandManagerSelect = function() {
             console.log('clicked band manger options')
         }
         $scope.musicianSelect = function() {
             console.log('clicked musical instruments')
         }
-    });
+    }]);
 };
