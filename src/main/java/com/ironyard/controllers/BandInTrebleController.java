@@ -35,7 +35,7 @@ public class BandInTrebleController
 {
 
     public static final String  MUSICIAN_FILENAME = "musicians.csv";
-    public static final String  GIG_FILENAME = "bandManager.csv";
+    public static final String  GIG_FILENAME = "bandManagers.csv";
 
     @Autowired
     UserRepository users;
@@ -47,11 +47,15 @@ public class BandInTrebleController
     BandManagerRepository band_managers;
 
     @PostConstruct
-    public void init() throws SQLException, FileNotFoundException
+    public void init() throws SQLException, FileNotFoundException, PasswordStorage.CannotPerformOperationException
     {
         Server.createWebServer().start();
-        migrateMusicianCSVfile(MUSICIAN_FILENAME);
-        //migrateBandManagerCSVfile(GIG_FILENAME);
+        if (users.count() == 0)
+        {
+            migrateMusicianCSVfile(MUSICIAN_FILENAME);
+            migrateBandManagerCSVfile(GIG_FILENAME);
+        }
+
     }
 
 
@@ -185,15 +189,15 @@ public class BandInTrebleController
         List<BandManager> gigs = new ArrayList<>();
 
         //using in-line conditionals to save space.  just filling the array with the appropriate info
-        if (musician.getDrummer()){gigs.addAll(band_managers.findByInstrumentNeeded("drummer"));}
-        if (musician.getLeadGuitarist()){gigs.addAll(band_managers.findByInstrumentNeeded("leadGuitarist"));}
-        if (musician.getBackupGuitarist()){gigs.addAll(band_managers.findByInstrumentNeeded("backupGuitarist"));}
-        if (musician.getLeadSinger()){gigs.addAll(band_managers.findByInstrumentNeeded("leadSinger"));}
-        if (musician.getBackupSinger()){gigs.addAll(band_managers.findByInstrumentNeeded("backupSinger"));}
-        if (musician.getBassist()){gigs.addAll(band_managers.findByInstrumentNeeded("bassist"));}
-        if (musician.getTambourine()){gigs.addAll(band_managers.findByInstrumentNeeded("tambourine"));}
-        if (musician.getCowBellPlayer()){gigs.addAll(band_managers.findByInstrumentNeeded("cowBellPlayer"));}
-        if (musician.getPianist()){gigs.addAll(band_managers.findByInstrumentNeeded("pianist"));}
+        if (musician.getDrummer()){gigs.addAll((List)band_managers.findByInstrumentNeeded("drummer"));}
+        if (musician.getLeadGuitarist()){gigs.addAll((List)band_managers.findByInstrumentNeeded("leadGuitarist"));}
+        if (musician.getBackupGuitarist()){gigs.addAll((List)band_managers.findByInstrumentNeeded("backupGuitarist"));}
+        if (musician.getLeadSinger()){gigs.addAll((List)band_managers.findByInstrumentNeeded("leadSinger"));}
+        if (musician.getBackupSinger()){gigs.addAll((List)band_managers.findByInstrumentNeeded("backupSinger"));}
+        if (musician.getBassist()){gigs.addAll((List)band_managers.findByInstrumentNeeded("bassist"));}
+        if (musician.getTambourine()){gigs.addAll((List)band_managers.findByInstrumentNeeded("tambourine"));}
+        if (musician.getCowBellPlayer()){gigs.addAll((List)band_managers.findByInstrumentNeeded("cowBellPlayer"));}
+        if (musician.getPianist()){gigs.addAll((List)band_managers.findByInstrumentNeeded("pianist"));}
 
         if (gigs.isEmpty())
         {
@@ -242,7 +246,7 @@ public class BandInTrebleController
         return user;
     }
 
-    public void migrateMusicianCSVfile(String filename) throws FileNotFoundException
+    public void migrateMusicianCSVfile(String filename) throws FileNotFoundException, PasswordStorage.CannotPerformOperationException
     {
         File f = new File(filename);
         Scanner fileScanner =  new Scanner(f);
@@ -253,7 +257,7 @@ public class BandInTrebleController
             String[] fields = line.split(",");
 
             //start parse
-            User user= new User(fields[0], fields[1], null);
+            User user= new User(fields[0], PasswordStorage.createHash(fields[1]), null);
             User newUser = users.save(user);
 
             //get boolean values
@@ -267,23 +271,27 @@ public class BandInTrebleController
             Boolean cowBellPlayer = Boolean.valueOf(fields[9]);
             Boolean pianist = Boolean.valueOf(fields[10]);
 
-            Musician musician = new Musician(drummer, leadGuitarist, backupGuitarist, leadSinger, backupSinger, bassist, tambourine, cowBellPlayer, pianist, user);
+            Musician musician = new Musician(drummer, leadGuitarist, backupGuitarist, leadSinger, backupSinger, bassist, tambourine, cowBellPlayer, pianist, newUser);
             musicians.save(musician);
 
         }
     }
 
-    public void migrateBandManagerCSVfile(String filename) throws FileNotFoundException
+    public void migrateBandManagerCSVfile(String filename) throws FileNotFoundException, PasswordStorage.CannotPerformOperationException
     {
-        ArrayList<Musician> countries = new ArrayList<>();
         File f = new File(filename);
         Scanner fileScanner =  new Scanner(f);
+        fileScanner.nextLine();
         while (fileScanner.hasNext())
         {
             String line = fileScanner.nextLine();
             String[] fields = line.split(",");
-            BandManager bandManager = new BandManager();
 
+
+            //start parse
+            User user= new User(fields[0], PasswordStorage.createHash(fields[1]), null);
+            User newUser = users.save(user);
+            BandManager bandManager = new BandManager(fields[2], newUser);
 
             band_managers.save(bandManager);
         }

@@ -1,21 +1,21 @@
-name, password, drummer, leadGuitarist, backUpGuitarist, leadSinger, backUpSinger, bassist, tambourine, cowBellPlayer\
-James, password1, false, true, false, false, true, true, false, false\
-Mark, password2, true, false, false, false, false, false, true, true\
-Tom, password3, false, false, false, true, true, false, true, false\
-Geri, password4, true, true, true, true, true, true, false, false, false\
-Anna, password5, false, true, true, false, false, false, true, false, false\
-Jeff, password6, false, false, false, false, false, true, true, false\
-Claire, password7, true, true, true, true, true, true, true, true, true\
-Sarah, password8, false, false, false, false, false, false, false, true\
-Mike, password9, false, true, true, true, true, true, true, true\
-Frank, password0, true, true, false, false, false, false, true, true\
-Kim, passwrd10, false, false, true, false, true, false, true, false\
-Lynn, passwrd11, false, false, false, true, false, false, false, false\
-Jared, passwrd12, true, false, false, false, false, false, true, true\
-Logan, passwrd13, false, true, true, true, true, true, true, true\
-Lana, passwrd14, true, false, true, false, false, false, true, true\
-Archer, passwrd15, false, false, false, true, true, false, false, true\
-Sharon, passwrd16, false, false, false, false, true, false, true, false\
-Caleb, passwrd17, true, false, true, true, true, false, false, false\
-Jon, passwrd18, false, true, false, false, true, true, false, false\
-Will, passwrd19, false, false, false, true, true, false, true, true }
+name,password,drummer,leadGuitarist,backUpGuitarist,leadSinger,backUpSinger,bassist,tambourine,cowBellPlayer\
+James,password1,false,true,false,false,true,true,false,false,true
+Mark,password2,true,false,false,false,false,false,true,true,true
+Tom,password3,false,false,false,true,true,false,true,false,false
+Geri,password4,true,true,true,true,true,true,false,false,false,false
+Anna,password5,false,true,true,false,false,false,true,false,false,true
+Jeff,password6,false,false,false,false,false,true,true,false,true
+Claire,password7,true,true,true,true,true,true,true,true,true,false
+Sarah,password8,false,false,false,false,false,false,false,true,false
+Mike,password9,false,true,true,true,true,true,true,true,true
+Frank,password0,true,true,false,false,false,false,true,true,true
+Kim,passwrd10,false,false,true,false,true,false,true,false,false
+Lynn,passwrd11,false,false,false,true,false,false,false,false,false
+Jared,passwrd12,true,false,false,false,false,false,true,true,false
+Logan,passwrd13,false,true,true,true,true,true,true,true,false
+Lana,passwrd14,true,false,true,false,false,false,true,true,false
+Archer,passwrd15,false,false,false,true,true,false,false,true,false
+Sharon,passwrd16,false,false,false,false,true,false,true,false,false
+Caleb,passwrd17,true,false,true,true,true,false,false,false,false
+Jon,passwrd18,false,true,false,false,true,true,false,false,false
+Will,passwrd19,false,false,false,true,true,false,true,true,false
