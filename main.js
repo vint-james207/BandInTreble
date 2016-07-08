@@ -1,5 +1,5 @@
-let app = angular.module('BandInTreble', ['ngRoute']);
-
+let app = angular.module
+('BandInTreble', ['ngRoute']);
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
         .when('/', {
