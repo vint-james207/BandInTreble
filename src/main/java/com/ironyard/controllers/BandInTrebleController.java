@@ -49,8 +49,8 @@ public class BandInTrebleController
     public void init() throws SQLException
     {
         Server.createWebServer().start();
-        migrateMusicianCSVfile(MUSICIAN_FILENAME);
-        migrateBandManagerCSVfile(GIG_FILENAME);
+        //migrateMusicianCSVfile(MUSICIAN_FILENAME);
+        //migrateBandManagerCSVfile(GIG_FILENAME);
     }
 
 
