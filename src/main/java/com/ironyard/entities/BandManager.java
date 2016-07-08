@@ -17,7 +17,7 @@ public class BandManager
     @Column(nullable = false)
     String instrumentNeeded;
 
-    @Column(nullable = false)
+    @ManyToOne
     User user;
 
     public BandManager()
