@@ -273,7 +273,6 @@ public class BandInTrebleController
 
             Musician musician = new Musician(drummer, leadGuitarist, backupGuitarist, leadSinger, backupSinger, bassist, tambourine, cowBellPlayer, pianist, newUser);
             musicians.save(musician);
-
         }
     }
 
