@@ -1,5 +1,10 @@
 let app = angular.module('BandInTreble', ['ngRoute']);
 
+
+require('./controllers/home')(app);
+require('./controllers/availablecontroller')(app);
+require('./controllers/lookingforcontroller')(app);
+
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
         .when('/', {
