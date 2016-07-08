@@ -3,6 +3,7 @@ module.exports = function(app) {
 
     app.controller('HomeController',['MusicFactory','$scope','$location',function(MusicFactory,$scope, $location) {
         $scope.loginClick = function() {
+          MusicFactory.postThis($scope.username)
             console.log('clicked')
             if ($scope.username != null){
               MusicFactory.postThis()
@@ -11,10 +12,13 @@ module.exports = function(app) {
               alert ('Please enter a username');
             }
         }
+<<<<<<< HEAD
         // $scope.PostThisThing = function(){
         //   MusicFactory.postThis()
         // }
 
+=======
+>>>>>>> 77826dc40443263deff6ce0f93b675b70f019424
     $scope.bandManagerSelect = function() {
             console.log('clicked band manger options')
             // $location.path('/available');
@@ -67,15 +71,15 @@ app.config(['$routeProvider', function($routeProvider) {
 //
 // THIS IS THE SERVICE BREH BRO
 //
-app.factory('MusicFactory', ['$http', '$location', function($http) {
+app.factory('MusicFactory', ['$http', '$location', function($http,$location) {
     return {
       // todo: rename this to be more specific
-        postThis: function() {
+        postThis: function(name) {
             $http({
                 url: '/musician',
                 method: 'post',
                 data: {
-                    name: 'Logan'
+                    name: name
                 },
             }).then(function(results) {
                 console.log("posted")
