@@ -46,4 +46,3 @@ crashlytics-build.properties
 fabric.properties
 
 *.db
-public/
