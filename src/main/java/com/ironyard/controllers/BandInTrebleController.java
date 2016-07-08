@@ -17,17 +17,25 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by jeffryporter on 7/7/16.
  */
+
+
 @RestController
 public class BandInTrebleController
 {
+
+    public static final String  MUSICIAN_FILENAME = "musicians.csv";
+    public static final String  GIG_FILENAME = "bandManager.csv";
+
     @Autowired
     UserRepository users;
 
@@ -41,7 +49,11 @@ public class BandInTrebleController
     public void init() throws SQLException
     {
         Server.createWebServer().start();
+        migrateMusicianCSVfile(MUSICIAN_FILENAME);
+        migrateBandManagerCSVfile(GIG_FILENAME);
     }
+
+
 
     // login POST route
     // requires User object
@@ -228,4 +240,39 @@ public class BandInTrebleController
         musicians.delete(musician);
         return user;
     }
+
+    public void migrateMusicianCSVfile(String filename) throws FileNotFoundException
+    {
+        ArrayList<Musician> countries = new ArrayList<>();
+        File f = new File(filename);
+        Scanner fileScanner =  new Scanner(f);
+        while (fileScanner.hasNext())
+        {
+            String line = fileScanner.nextLine();
+            String[] fields = line.split(",");
+            Musician musician = new Musician();
+
+
+            musicians.save(musician);
+        }
+    }
+
+    public void migrateBandManagerCSVfile(String filename) throws FileNotFoundException
+    {
+        ArrayList<Musician> countries = new ArrayList<>();
+        File f = new File(filename);
+        Scanner fileScanner =  new Scanner(f);
+        while (fileScanner.hasNext())
+        {
+            String line = fileScanner.nextLine();
+            String[] fields = line.split(",");
+            BandManager bandManager = new BandManager();
+
+
+            band_managers.save(bandManager);
+        }
+    }
+
 }
+
+
