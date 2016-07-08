@@ -46,6 +46,3 @@ crashlytics-build.properties
 fabric.properties
 
 *.db
-public/
-*.rtf
-.DS_Store
