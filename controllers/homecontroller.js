@@ -8,11 +8,11 @@ module.exports = function(app) {
               alert ('Please enter a username');
             }
         }
-                $scope.bandManagerSelect = function($scope, $location) {
-                $scope.PostThisThing = function(){
+        $scope.PostThisThing = function(){
+          MusicFactory.postThis()
+        }
 
-                }
-                $scope.bandManagerSelect = function() {
+    $scope.bandManagerSelect = function() {
             console.log('clicked band manger options')
             // $location.path('/available');
         }
