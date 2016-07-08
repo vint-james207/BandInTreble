@@ -17,7 +17,6 @@ module.exports = function(app) {
         }
     });
 };
-
 },{}],2:[function(require,module,exports){
 module.exports = function(app) {
     app.controller('LookingForController', ['$scope', '$http', function($scope, $http) {
@@ -28,11 +27,9 @@ module.exports = function(app) {
 };
 
 },{}],3:[function(require,module,exports){
+
 let app = angular.module('BandInTreble', ['ngRoute']);
-
-
 require('./controllers/homecontroller')(app);
-// require('./controllers/availablecontroller')(app);
 require('./controllers/lookingforcontroller')(app);
 
 app.config(['$routeProvider', function($routeProvider) {

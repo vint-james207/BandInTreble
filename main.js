@@ -1,8 +1,5 @@
 let app = angular.module('BandInTreble', ['ngRoute']);
-
-
 require('./controllers/homecontroller')(app);
-// require('./controllers/availablecontroller')(app);
 require('./controllers/lookingforcontroller')(app);
 
 app.config(['$routeProvider', function($routeProvider) {
@@ -26,4 +23,19 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: 'LookingForController',
             templateUrl: 'templates/lookingfor.html',
         });
+  //
+  // THIS IS THE SERVICE BREH BRO
+  //
+  app.factory('MusicFactory', function($http){
+  var =
+      url:'/musician',
+      method: 'post',
+      data: {
+        name: "Logan"
+      }
+    }).then(function(results){
+      console.log()
+    })
+
+  })
 }]);
