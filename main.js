@@ -24,4 +24,19 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: 'LookingForController',
             templateUrl: 'templates/lookingfor.html',
         });
+  //
+  // THIS IS THE SERVICE BREH BRO
+  //
+  app.factory('MusicFactory', function($http){
+  var =
+      url:'/musician',
+      method: 'post',
+      data: {
+        name: "Logan"
+      }
+    }).then(function(results){
+      console.log()
+    })
+
+  })
 }]);
