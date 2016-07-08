@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    app.controller('HomeController', function($scope, $location) {
+    app.controller('HomeController',['MusicFactory','$scope','$location',function(MusicFactory,$scope, $location) {
         $scope.loginClick = function() {
             console.log('clicked')
             if ($scope.username != null){
@@ -8,7 +8,11 @@ module.exports = function(app) {
               alert ('Please enter a username');
             }
         }
-        $scope.bandManagerSelect = function($scope, $location) {
+                $scope.bandManagerSelect = function($scope, $location) {
+                $scope.PostThisThing = function(){
+
+                }
+                $scope.bandManagerSelect = function() {
             console.log('clicked band manger options')
             // $location.path('/available');
         }
@@ -17,5 +21,5 @@ module.exports = function(app) {
             ////need to make sure they can select multiple before they are redirected to the lookingfor page
             // $location.path('/lookingfor');
         }
-    });
+    }]);
 };
