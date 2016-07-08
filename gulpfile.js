@@ -24,6 +24,7 @@ gulp.task('js', function(){
   gulp.src('./main.js')
     .pipe(browserify())
     .pipe(gulp.dest('./public'))
+
 });
 
 gulp.task('watch', function(){
