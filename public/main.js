@@ -1,15 +1,24 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = function(app) {
+
     app.controller('HomeController',['MusicFactory','$scope','$location',function(MusicFactory,$scope, $location) {
         $scope.loginClick = function() {
           MusicFactory.postThis($scope.username)
             console.log('clicked')
             if ($scope.username != null){
+              MusicFactory.postThis()
               $location.path('/home');
             } else {
               alert ('Please enter a username');
             }
         }
+<<<<<<< HEAD
+        // $scope.PostThisThing = function(){
+        //   MusicFactory.postThis()
+        // }
+
+=======
+>>>>>>> 77826dc40443263deff6ce0f93b675b70f019424
     $scope.bandManagerSelect = function() {
             console.log('clicked band manger options')
             // $location.path('/available');

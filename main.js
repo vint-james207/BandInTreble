@@ -28,9 +28,10 @@ app.config(['$routeProvider', function($routeProvider) {
 //
 // THIS IS THE SERVICE BREH BRO
 //
-app.factory('MusicFactory', ['$http', '$location', function($http,$location) {
+app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
+    let musicianPeople = [];
     return {
-      // todo: rename this to be more specific
+        // todo: rename this to be more specific
         postThis: function(name) {
             $http({
                 url: '/musician',
@@ -40,6 +41,19 @@ app.factory('MusicFactory', ['$http', '$location', function($http,$location) {
                 },
             }).then(function(results) {
                 console.log("posted")
+            });
+        },
+        getThis: function(name) {
+            $http({
+                url: '/musician',
+                method: 'get',
+
+            }).then(function(response) {
+                let musicians = response.data;
+                musicians.forEach(function(element) {
+                    musicianPeople.push(element.value);
+                })
+                console.log("gotit")
             });
         },
     }; // end return
