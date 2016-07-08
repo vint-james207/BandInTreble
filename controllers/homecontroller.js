@@ -8,14 +8,18 @@ module.exports = function(app) {
               alert ('Please enter a username');
             }
         }
-        $scope.PostThisThing = function(){
+                $scope.bandManagerSelect = function($scope, $location) {
+                $scope.PostThisThing = function(){
 
-        }
-        $scope.bandManagerSelect = function() {
+                }
+                $scope.bandManagerSelect = function() {
             console.log('clicked band manger options')
+            // $location.path('/available');
         }
-        $scope.musicianSelect = function() {
+        $scope.musicianSelect = function($scope, $location) {
             console.log('clicked musical instruments')
+            ////need to make sure they can select multiple before they are redirected to the lookingfor page
+            // $location.path('/lookingfor');
         }
     }]);
 };
