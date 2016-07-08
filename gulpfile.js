@@ -1,8 +1,3 @@
-/////TO-DO: ADD CONTROLLERS FOLDER SOMEWHERE
-
-
-
-
 var gulp = require('gulp'); // npm install gulp
 var sass = require('gulp-sass'); // npm install gulp-sass
 var browserify = require('gulp-browserify') // npm install gulp-browserify
