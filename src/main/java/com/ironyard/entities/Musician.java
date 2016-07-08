@@ -41,7 +41,7 @@ public class Musician
     @Column(nullable = false)
     Boolean pianist;
 
-    @Column(nullable = false)
+    @OneToOne
     User user;
 
     public Musician()

@@ -1,8 +1,5 @@
 let app = angular.module('BandInTreble', ['ngRoute']);
-
-
 require('./controllers/homecontroller')(app);
-// require('./controllers/availablecontroller')(app);
 require('./controllers/lookingforcontroller')(app);
 
 app.config(['$routeProvider', function($routeProvider) {
@@ -26,4 +23,24 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: 'LookingForController',
             templateUrl: 'templates/lookingfor.html',
         });
+}]);
+
+//
+// THIS IS THE SERVICE BREH BRO
+//
+app.factory('MusicFactory', ['$http', '$location', function($http,$location) {
+    return {
+      // todo: rename this to be more specific
+        postThis: function(name) {
+            $http({
+                url: '/musician',
+                method: 'post',
+                data: {
+                    name: name
+                },
+            }).then(function(results) {
+                console.log("posted")
+            });
+        },
+    }; // end return
 }]);
