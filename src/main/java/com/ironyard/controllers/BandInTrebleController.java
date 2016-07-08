@@ -196,7 +196,7 @@ public class BandInTrebleController
 
         if (gigs.isEmpty())
         {
-            System.err.printf("Error in Controller '/musicians' GET route.  Musician recieved an invalid boolean set.");
+            System.err.printf("Error in Controller '/musicians' GET route.  Musician received an invalid boolean set.");
             return null;
         }
         else
