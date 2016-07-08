@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.Column;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -46,10 +47,10 @@ public class BandInTrebleController
     BandManagerRepository band_managers;
 
     @PostConstruct
-    public void init() throws SQLException
+    public void init() throws SQLException, FileNotFoundException
     {
         Server.createWebServer().start();
-        //migrateMusicianCSVfile(MUSICIAN_FILENAME);
+        migrateMusicianCSVfile(MUSICIAN_FILENAME);
         //migrateBandManagerCSVfile(GIG_FILENAME);
     }
 
@@ -243,17 +244,32 @@ public class BandInTrebleController
 
     public void migrateMusicianCSVfile(String filename) throws FileNotFoundException
     {
-        ArrayList<Musician> countries = new ArrayList<>();
         File f = new File(filename);
         Scanner fileScanner =  new Scanner(f);
+        fileScanner.nextLine();
         while (fileScanner.hasNext())
         {
             String line = fileScanner.nextLine();
             String[] fields = line.split(",");
-            Musician musician = new Musician();
 
+            //start parse
+            User user= new User(fields[0], fields[1], null);
+            User newUser = users.save(user);
 
+            //get boolean values
+            Boolean drummer = Boolean.valueOf(fields[2]);
+            Boolean leadGuitarist = Boolean.valueOf(fields[3]);
+            Boolean backupGuitarist = Boolean.valueOf(fields[4]);
+            Boolean leadSinger = Boolean.valueOf(fields[5]);
+            Boolean backupSinger = Boolean.valueOf(fields[6]);
+            Boolean bassist = Boolean.valueOf(fields[7]);
+            Boolean tambourine = Boolean.valueOf(fields[8]);
+            Boolean cowBellPlayer = Boolean.valueOf(fields[9]);
+            Boolean pianist = Boolean.valueOf(fields[10]);
+
+            Musician musician = new Musician(drummer, leadGuitarist, backupGuitarist, leadSinger, backupSinger, bassist, tambourine, cowBellPlayer, pianist, user);
             musicians.save(musician);
+
         }
     }
 
