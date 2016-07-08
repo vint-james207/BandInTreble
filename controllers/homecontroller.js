@@ -9,7 +9,7 @@ module.exports = function(app) {
             }
         }
         $scope.PostThisThing = function(){
-
+          MusicFactory.postThis()
         }
         $scope.bandManagerSelect = function() {
             console.log('clicked band manger options')
