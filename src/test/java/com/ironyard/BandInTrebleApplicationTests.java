@@ -47,27 +47,10 @@ public class BandInTrebleApplicationTests {
 
 	@Test
 	public void atestLogin() throws Exception {
-		User user = new User();
-		user.setName("User");
-		user.setPassword("password");
-		ObjectMapper om = new ObjectMapper();
-		String json = om.writeValueAsString(user);
-
 		mockMvc.perform(
 				MockMvcRequestBuilders.post("/login")
-						.content(json)
-						.contentType("application/json")
 		);
-		System.out.println(users);
-
-		Assert.assertTrue(users.count() == 1);
-	}
-
-	@Test
-	public void btestPostGig () throws Exception {
-		mockMvc.perform(
-				MockMvcRequestBuilders.post("/band-manager")
-		);
-
+		Assert.assertTrue(users.count() != 0);
 	}
 }
+
