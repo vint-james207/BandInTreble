@@ -35,14 +35,14 @@ module.exports = function(app) {
         }
     $scope.bandManagerSelect = function() {
             console.log('clicked band manger options')
-            $location.path('/available');
+            // $location.path('/available');
             // MusicFactory.getMusician.user();
             $scope.musician = MusicFactory.getMusician();
         }
         $scope.musicianSelect = function() {
             console.log('clicked musical instruments')
             ////need to make sure they can select multiple before they are redirected to the lookingfor page
-            $location.path('/lookingfor');
+            // $location.path('/lookingfor');
             // MusicFactory.getBandManager.user();
             $scope.bandmanager = MusicFactory.getBandManager();
 
@@ -111,12 +111,13 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
                 console.log("posted")
             });
         },
-        getMusician: function(name) {
+        getMusician: function() {
             $http({
-                url: '/band-manager',
+                url:'http://jservice.io/api/categories?count=5',
                 method: 'get',
 
             }).then(function(response) {
+              console.log('response')
                 let musicians = response.data;
                 musicians.forEach(function(element) {
                     musicianPeople.push(element.value);
@@ -124,7 +125,7 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
                 console.log("gotit")
             });
         },
-        getBandManager: function(name) {
+        getBandManager: function() {
             $http({
                 url: '/musician',
                 method: 'get',
