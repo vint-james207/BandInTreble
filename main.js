@@ -1,5 +1,6 @@
 let app = angular.module('BandInTreble', ['ngRoute']);
 require('./controllers/homecontroller')(app);
+require('./controllers/availablecontroller')(app);
 require('./controllers/lookingforcontroller')(app);
 
 app.config(['$routeProvider', function($routeProvider) {
