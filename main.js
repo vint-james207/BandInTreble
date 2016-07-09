@@ -52,10 +52,15 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
             $http({
                 url:'http://jservice.io/api/categories?count=5',
                 method: 'get',
+                data: {
+                    user: '',
+                    instrumentNeeded: '',
+                },
 
             }).then(function(response) {
               console.log('response')
                 let musicians = response.data;
+                console.log(musicians);
                 musicians.forEach(function(element) {
                     musicianPeople.push(element.value);
                 })
@@ -66,9 +71,14 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
             $http({
                 url: '/musician',
                 method: 'get',
+                data: {
+                    user: '',
+                    instrumentNeeded: '',
+                },
 
             }).then(function(response) {
                 let bandmanager = response.data;
+                console.log(bandmanager);
                 bandmanager.forEach(function(element) {
                     bandmanagerPeople.push(element.value);
                 })
