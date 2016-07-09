@@ -30,11 +30,19 @@ public class User
     {
     }
 
-    public User(String name, String password, String avatar)
+    public User(String name, String password)
+    {
+        this.name = name;
+        this.password = password;
+    }
+
+    public User(String name, String password, String avatar, String phoneNumber, String email)
     {
         this.name = name;
         this.password = password;
         this.avatar = avatar;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
     }
 
     public int getId()
