@@ -59,7 +59,6 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
                 musicians.forEach(function(element) {
                     musicianPeople.push(element.value);
                 })
-
             });
         },
         getBandManager: function() {
@@ -78,7 +77,9 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
                     bandmanagerPeople.push(element.value);
                 })
                 console.log("gotit")
+
             });
+
         },
     }; // end return
 }]);
