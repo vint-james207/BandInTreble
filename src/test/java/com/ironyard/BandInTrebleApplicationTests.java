@@ -1,10 +1,16 @@
 package com.ironyard;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ironyard.entities.User;
+import com.ironyard.services.BandManagerRepository;
+import com.ironyard.services.MusicianRepository;
 import com.ironyard.services.UserRepository;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -17,6 +23,7 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = BandInTrebleApplication.class)
 @WebAppConfiguration
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BandInTrebleApplicationTests {
 
 	@Autowired
@@ -30,17 +37,37 @@ public class BandInTrebleApplicationTests {
 	}
 
 	@Autowired
-	UserRepository band_managers;
+	UserRepository users;
+
+	@Autowired
+	BandManagerRepository band_managers;
+
+	@Autowired
+	MusicianRepository musicians;
 
 	@Test
-	public void testLogin() throws Exception {
+	public void atestLogin() throws Exception {
+		User user = new User();
+		user.setName("User");
+		user.setPassword("password");
+		ObjectMapper om = new ObjectMapper();
+		String json = om.writeValueAsString(user);
+
 		mockMvc.perform(
 				MockMvcRequestBuilders.post("/login")
-						.param("name", "James")
-						.param("password", "password")
+						.content(json)
+						.contentType("application/json")
 		);
+		System.out.println(users);
 
-		Assert.assertTrue(band_managers.count() == 1);
+		Assert.assertTrue(users.count() == 1);
 	}
 
+	@Test
+	public void btestPostGig () throws Exception {
+		mockMvc.perform(
+				MockMvcRequestBuilders.post("/band-manager")
+		);
+
+	}
 }
