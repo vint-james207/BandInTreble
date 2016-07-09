@@ -1,5 +1,28 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = function(app) {
+    app.controller('AvailableController', ['$scope', '$http', '$location', function($scope, $http, $location) {
+            // $scope.bandManagerSelect = function() {
+            //     console.log('clicked band manger options')
+            //     $location.path('/available');
+            //     // MusicFactory.getMusician.user();
+            //     $scope.musician = MusicFactory.getMusician();
+            // }
+            // $scope.musicianSelect = function() {
+            //     console.log('clicked musical instruments')
+            //         ////need to make sure they can select multiple before they are redirected to the lookingfor page
+            //     $location.path('/lookingfor');
+            //     // MusicFactory.getBandManager.user();
+            //     $scope.bandmanager = MusicFactory.getBandManager();
+            //
+            //
+            // }
+            }]);
+        }
+
+// };
+
+},{}],2:[function(require,module,exports){
+module.exports = function(app) {
     app.controller('HomeController',['MusicFactory','$scope','$location',function(MusicFactory,$scope, $location) {
         $scope.loginClick = function() {
           MusicFactory.postThis($scope.username)
@@ -28,7 +51,7 @@ module.exports = function(app) {
     }]);
 };
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 module.exports = function(app) {
     app.controller('LookingForController', ['$scope', '$http', function($scope, $http) {
         $scope.loginClick = function() {
@@ -37,9 +60,10 @@ module.exports = function(app) {
     }]);
 };
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 let app = angular.module('BandInTreble', ['ngRoute']);
 require('./controllers/homecontroller')(app);
+require('./controllers/availablecontroller')(app);
 require('./controllers/lookingforcontroller')(app);
 
 app.config(['$routeProvider', function($routeProvider) {
@@ -116,4 +140,4 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
     }; // end return
 }]);
 
-},{"./controllers/homecontroller":1,"./controllers/lookingforcontroller":2}]},{},[3])
+},{"./controllers/availablecontroller":1,"./controllers/homecontroller":2,"./controllers/lookingforcontroller":3}]},{},[4])
