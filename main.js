@@ -50,20 +50,16 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
         },
         getMusician: function() {
             $http({
-                url: '/band-manager',
+                url:'/band-manager',
                 method: 'get',
-                data: {
-                    user: '',
-                    instrumentNeeded: '',
-                },
-
             }).then(function(response) {
+              console.log('response')
                 let musicians = response.data;
                 console.log(musicians);
                 musicians.forEach(function(element) {
                     musicianPeople.push(element.value);
                 })
-                console.log("gotit")
+
             });
         },
         getBandManager: function() {
