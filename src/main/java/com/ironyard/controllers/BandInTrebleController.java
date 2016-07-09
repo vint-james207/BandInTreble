@@ -58,8 +58,6 @@ public class BandInTrebleController
 
     }
 
-
-
     // login POST route
     // requires User object
     // returns a User
@@ -95,6 +93,18 @@ public class BandInTrebleController
         return user;
     }
 
+    // update-user PUT route
+    // requires user and session
+    // returns user
+    //
+    @RequestMapping(path = "/update-user", method = RequestMethod.POST)
+    public User updateUser(HttpSession session, User user)
+    {
+        User userFromDb = users.findOne((Integer) session.getAttribute("userId"));
+        User newUser = users.save(user);
+        session.setAttribute("userId", userFromDb.getId());
+        return newUser;
+    }
 
     // logout POST route
     // requires a session
@@ -151,6 +161,7 @@ public class BandInTrebleController
     {
         User user = users.findOne((Integer) session.getAttribute("userId"));
         band_managers.save(bandManager);
+        session.setAttribute("userId", user.getId());
         return bandManager;
     }
 
@@ -163,6 +174,7 @@ public class BandInTrebleController
     {
         User user = users.findOne((Integer) session.getAttribute("userId"));
         band_managers.save(bandManager);
+        session.setAttribute("userId", user.getId());
         return bandManager;
     }
 
@@ -175,6 +187,7 @@ public class BandInTrebleController
     {
         User user = users.findOne((Integer) session.getAttribute("userId"));
         band_managers.delete(bandManager);
+        session.setAttribute("userId", user.getId());
         return user;
     }
 
@@ -219,6 +232,7 @@ public class BandInTrebleController
     {
         User user = users.findOne((Integer) session.getAttribute("userId"));
         musicians.save(musician);
+        session.setAttribute("userId", user.getId());
         return musician;
     }
 
@@ -231,6 +245,7 @@ public class BandInTrebleController
     {
         User user = users.findOne((Integer) session.getAttribute("userId"));
         musicians.save(musician);
+        session.setAttribute("userId", user.getId());
         return musician;
     }
 
@@ -243,6 +258,7 @@ public class BandInTrebleController
     {
         User user = users.findOne((Integer) session.getAttribute("userId"));
         musicians.delete(musician);
+        session.setAttribute("userId", user.getId());
         return user;
     }
 
@@ -273,7 +289,6 @@ public class BandInTrebleController
 
             Musician musician = new Musician(drummer, leadGuitarist, backupGuitarist, leadSinger, backupSinger, bassist, tambourine, cowBellPlayer, pianist, newUser);
             musicians.save(musician);
-
         }
     }
 
