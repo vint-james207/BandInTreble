@@ -48,7 +48,7 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
                 console.log("posted")
             });
         },
-        getMusician: function(name) {
+        getMusician: function() {
             $http({
                 url: '/band-manager',
                 method: 'get',
@@ -66,7 +66,7 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
                 console.log("gotit")
             });
         },
-        getBandManager: function(name) {
+        getBandManager: function() {
             $http({
                 url: '/musician',
                 method: 'get',
