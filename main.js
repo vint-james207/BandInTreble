@@ -15,10 +15,10 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: 'HomeController',
             templateUrl: 'templates/home.html',
         })
-        // .when('/available', {
-        //     controller: 'AvailableController',
-        //     templateUrl: 'templates/available.html',
-        // })
+        .when('/available', {
+            controller: 'AvailableController',
+            templateUrl: 'templates/available.html',
+        })
         .when('/lookingfor', {
             controller: 'LookingForController',
             templateUrl: 'templates/lookingfor.html',
