@@ -93,7 +93,7 @@ public class BandInTrebleController
         return user;
     }
 
-    // update-user PUT route
+    // update-user PUT
     // requires user and session
     // returns user
     //
@@ -122,34 +122,34 @@ public class BandInTrebleController
     //
     //THE STRING RETURNED HAS TO MATCH THE VARIABLE EXACTLY SO I CAN MANIPULATE IT PROPERLY
     @RequestMapping(path = "/band-manager", method = RequestMethod.GET)
-    public Iterable<Musician> getMusician(@RequestBody BandManager bandManager)
+    public Iterable<Musician> getMusician()
     {
-        switch (bandManager.getInstrumentNeeded())
-        {
-            case "all":
+//        switch (bandManager.getInstrumentNeeded())
+//        {
+//            case "all":
                 return musicians.findAll();
-            case "drummer":
-                return musicians.findByDrummer(true);
-            case "leadGuitarist":
-                return musicians.findByLeadGuitarist(true);
-            case "backupGuitarist":
-                return musicians.findByBackupGuitarist(true);
-            case "leadSinger":
-                return musicians.findByLeadSinger(true);
-            case "backupSinger":
-                return musicians.findByBackupSinger(true);
-            case "bassist":
-                return musicians.findByBassist(true);
-            case "tambourine":
-                return musicians.findByTambourine(true);
-            case "cowBellPlayer":
-                return musicians.findByCowBellPlayer(true);
-            case "pianist":
-                return musicians.findByPianist(true);
-            default:
-                System.err.printf("Error in Controller '/band-manager' GET route.  BandManager recieved a value of: %s", bandManager.getInstrumentNeeded());
-                return null;
-        }
+//            case "drummer":
+//                return musicians.findByDrummer(true);
+//            case "leadGuitarist":
+//                return musicians.findByLeadGuitarist(true);
+//            case "backupGuitarist":
+//                return musicians.findByBackupGuitarist(true);
+//            case "leadSinger":
+//                return musicians.findByLeadSinger(true);
+//            case "backupSinger":
+//                return musicians.findByBackupSinger(true);
+//            case "bassist":
+//                return musicians.findByBassist(true);
+//            case "tambourine":
+//                return musicians.findByTambourine(true);
+//            case "cowBellPlayer":
+//                return musicians.findByCowBellPlayer(true);
+//            case "pianist":
+//                return musicians.findByPianist(true);
+//            default:
+//                System.err.printf("Error in Controller '/band-manager' GET route.  BandManager recieved a value of: %s", bandManager.getInstrumentNeeded());
+//                return null;
+//        }
     }
 
     // band-manager POST route
@@ -197,30 +197,32 @@ public class BandInTrebleController
     // returns an ArrayList of available gigs
     //
     @RequestMapping(path = "/musician", method = RequestMethod.GET)
-    public Iterable<BandManager> getGig(@RequestBody Musician musician)
+    public Iterable<BandManager> getGig()
     {
-        List<BandManager> gigs = new ArrayList<>();
+//        List<BandManager> gigs = new ArrayList<>();
+//
+//        //using in-line conditionals to save space.  just filling the array with the appropriate info
+//        if (musician.getDrummer()){gigs.addAll((List)band_managers.findByInstrumentNeeded("drummer"));}
+//        if (musician.getLeadGuitarist()){gigs.addAll((List)band_managers.findByInstrumentNeeded("leadGuitarist"));}
+//        if (musician.getBackupGuitarist()){gigs.addAll((List)band_managers.findByInstrumentNeeded("backupGuitarist"));}
+//        if (musician.getLeadSinger()){gigs.addAll((List)band_managers.findByInstrumentNeeded("leadSinger"));}
+//        if (musician.getBackupSinger()){gigs.addAll((List)band_managers.findByInstrumentNeeded("backupSinger"));}
+//        if (musician.getBassist()){gigs.addAll((List)band_managers.findByInstrumentNeeded("bassist"));}
+//        if (musician.getTambourine()){gigs.addAll((List)band_managers.findByInstrumentNeeded("tambourine"));}
+//        if (musician.getCowBellPlayer()){gigs.addAll((List)band_managers.findByInstrumentNeeded("cowBellPlayer"));}
+//        if (musician.getPianist()){gigs.addAll((List)band_managers.findByInstrumentNeeded("pianist"));}
+//
+//        if (gigs.isEmpty())
+//        {
+//            System.err.printf("Error in Controller '/musicians' GET route.  Musician recieved an invalid boolean set.");
+//            return null;
+//        }
+//        else
+//        {
+//            return gigs;
+//        }
 
-        //using in-line conditionals to save space.  just filling the array with the appropriate info
-        if (musician.getDrummer()){gigs.addAll((List)band_managers.findByInstrumentNeeded("drummer"));}
-        if (musician.getLeadGuitarist()){gigs.addAll((List)band_managers.findByInstrumentNeeded("leadGuitarist"));}
-        if (musician.getBackupGuitarist()){gigs.addAll((List)band_managers.findByInstrumentNeeded("backupGuitarist"));}
-        if (musician.getLeadSinger()){gigs.addAll((List)band_managers.findByInstrumentNeeded("leadSinger"));}
-        if (musician.getBackupSinger()){gigs.addAll((List)band_managers.findByInstrumentNeeded("backupSinger"));}
-        if (musician.getBassist()){gigs.addAll((List)band_managers.findByInstrumentNeeded("bassist"));}
-        if (musician.getTambourine()){gigs.addAll((List)band_managers.findByInstrumentNeeded("tambourine"));}
-        if (musician.getCowBellPlayer()){gigs.addAll((List)band_managers.findByInstrumentNeeded("cowBellPlayer"));}
-        if (musician.getPianist()){gigs.addAll((List)band_managers.findByInstrumentNeeded("pianist"));}
-
-        if (gigs.isEmpty())
-        {
-            System.err.printf("Error in Controller '/musicians' GET route.  Musician recieved an invalid boolean set.");
-            return null;
-        }
-        else
-        {
-            return gigs;
-        }
+        return band_managers.findAll();
     }
 
     // musician POST route
@@ -273,7 +275,7 @@ public class BandInTrebleController
             String[] fields = line.split(",");
 
             //start parse
-            User user= new User(fields[0], PasswordStorage.createHash(fields[1]), null);
+            User user= new User(fields[0], PasswordStorage.createHash(fields[1]));
             User newUser = users.save(user);
 
             //get boolean values
@@ -304,7 +306,7 @@ public class BandInTrebleController
 
 
             //start parse
-            User user= new User(fields[0], PasswordStorage.createHash(fields[1]), null);
+            User user= new User(fields[0], PasswordStorage.createHash(fields[1]));
             User newUser = users.save(user);
             BandManager bandManager = new BandManager(fields[2], newUser);
 
