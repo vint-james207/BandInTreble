@@ -34,10 +34,12 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
         // todo: rename this to be more specific
         postThis: function(name) {
             $http({
-                url: '/musician',
+                url: '/login',
                 method: 'post',
                 data: {
-                    name: name
+                    name: name,
+                    password:'1234',
+                    avatar:null,
                 },
             }).then(function(results) {
                 console.log("posted")
