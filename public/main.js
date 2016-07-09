@@ -113,7 +113,7 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
         },
         getMusician: function() {
             $http({
-                url:'http://jservice.io/api/categories?count=5',
+                url:'/band-manager',
                 method: 'get',
             }).then(function(response) {
               console.log('response')
@@ -129,10 +129,6 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
             $http({
                 url: '/musician',
                 method: 'get',
-                data: {
-                    user: '',
-                    instrumentNeeded: '',
-                },
 
             }).then(function(response) {
                 let bandmanager = response.data;
