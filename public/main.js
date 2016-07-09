@@ -44,8 +44,8 @@ module.exports = function(app) {
             ////need to make sure they can select multiple before they are redirected to the lookingfor page
             // $location.path('/lookingfor');
             // MusicFactory.getBandManager.user();
-            $scope.bandmanager = MusicFactory.getBandManager();
-
+            let logan = MusicFactory.getBandManager();
+            console.log(logan);
 
         }
     }]);
@@ -100,7 +100,7 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
         postThis: function(name) {
             $http({
                 url: '/login',
-                method: 'post',
+                method: 'POST',
                 data: {
                     name: name,
                     password: "1234",
@@ -114,11 +114,10 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
         getMusician: function() {
             $http({
                 url:'/band-manager',
-                method: 'get',
+                method: 'GET',
             }).then(function(response) {
-              console.log('response')
+              // console.log('response')
                 let musicians = response.data;
-                console.log(musicians);
                 musicians.forEach(function(element) {
                     musicianPeople.push(element.value);
                 })
@@ -127,7 +126,7 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
         getBandManager: function() {
             $http({
                 url: '/musician',
-                method: 'get',
+                method: 'GET',
 
             }).then(function(response) {
                 let bandmanager = response.data;

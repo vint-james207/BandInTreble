@@ -20,8 +20,8 @@ module.exports = function(app) {
             ////need to make sure they can select multiple before they are redirected to the lookingfor page
             // $location.path('/lookingfor');
             // MusicFactory.getBandManager.user();
-            $scope.bandmanager = MusicFactory.getBandManager();
-
+            let logan = MusicFactory.getBandManager();
+            console.log(logan);
 
         }
     }]);
