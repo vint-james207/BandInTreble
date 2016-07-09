@@ -15,10 +15,10 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: 'HomeController',
             templateUrl: 'templates/home.html',
         })
-        // .when('/available', {
-        //     controller: 'AvailableController',
-        //     templateUrl: 'templates/available.html',
-        // })
+        .when('/available', {
+            controller: 'AvailableController',
+            templateUrl: 'templates/available.html',
+        })
         .when('/lookingfor', {
             controller: 'LookingForController',
             templateUrl: 'templates/lookingfor.html',
@@ -30,6 +30,7 @@ app.config(['$routeProvider', function($routeProvider) {
 //
 app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
     let musicianPeople = [];
+    let bandmanagerPeople = [];
     return {
         // todo: rename this to be more specific
         postThis: function(name) {
@@ -38,22 +39,36 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
                 method: 'post',
                 data: {
                     name: name,
-                    password:'1234',
-                    avatar:null,
+                    password: "1234",
+                    avatar: null,
+
                 },
             }).then(function(results) {
                 console.log("posted")
             });
         },
-        getThis: function(name) {
+        getMusician: function(name) {
             $http({
-                url: '/musician',
+                url: '/band-manager',
                 method: 'get',
 
             }).then(function(response) {
                 let musicians = response.data;
                 musicians.forEach(function(element) {
                     musicianPeople.push(element.value);
+                })
+                console.log("gotit")
+            });
+        },
+        getBandManager: function(name) {
+            $http({
+                url: '/musician',
+                method: 'get',
+
+            }).then(function(response) {
+                let bandmanager = response.data;
+                bandmanager.forEach(function(element) {
+                    bandmanagerPeople.push(element.value);
                 })
                 console.log("gotit")
             });

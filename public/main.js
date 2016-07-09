@@ -72,8 +72,9 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
                 method: 'post',
                 data: {
                     name: name,
-                    password:'1234',
-                    avatar:null,
+                    password: "1234",
+                    avatar: null,
+
                 },
             }).then(function(results) {
                 console.log("posted")
