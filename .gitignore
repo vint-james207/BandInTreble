@@ -47,4 +47,4 @@ fabric.properties
 
 
 *.db
-
+.ds_store
