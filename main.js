@@ -37,7 +37,7 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
         postThis: function(name) {
             $http({
                 url: '/login',
-                method: 'post',
+                method: 'POST',
                 data: {
                     name: name,
                     password: "1234",
@@ -48,26 +48,28 @@ app.factory('MusicFactory', ['$http', '$location', function($http, $location) {
                 console.log("posted")
             });
         },
-        getMusician: function(name) {
+        getMusician: function() {
             $http({
-                url: '/band-manager',
-                method: 'get',
-
+                url:'/band-manager',
+                method: 'GET',
             }).then(function(response) {
+              console.log('response')
                 let musicians = response.data;
+                console.log(musicians);
                 musicians.forEach(function(element) {
                     musicianPeople.push(element.value);
                 })
-                console.log("gotit")
+
             });
         },
-        getBandManager: function(name) {
+        getBandManager: function() {
             $http({
                 url: '/musician',
-                method: 'get',
+                method: 'GET',
 
             }).then(function(response) {
                 let bandmanager = response.data;
+                console.log(bandmanager);
                 bandmanager.forEach(function(element) {
                     bandmanagerPeople.push(element.value);
                 })
